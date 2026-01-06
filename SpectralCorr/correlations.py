@@ -404,8 +404,8 @@ def bootstrap_correlation(ts1: TimeSeries, ts2: TimeSeries, n_iter=1000, detrend
     # Compute correlations between surrogate pairs
     corrs = pearsonr(xs_surrogates, ys_surrogates, axis=1)[0]
     ecdf = ECDF(corrs)
-    boot_p_value = 2 * min(ecdf(ref_corr), 1 - ecdf(ref_corr))
-
+    a = np.abs(ref_corr)
+    boot_p_value = ecdf(-a) + (1.0 - ecdf(a)) #two-sided t-test
     return ref_corr, boot_p_value, corrs
 
 def _correlation_pearson(ts1: TimeSeries, ts2: TimeSeries):
