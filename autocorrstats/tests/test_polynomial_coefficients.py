@@ -3,7 +3,7 @@
 import numpy as np
 import xarray as xr
 
-from SpectralCorr import (
+from autocorrstats import (
     polynomial_coefficients,
     polynomial_coefficient_significance,
 )

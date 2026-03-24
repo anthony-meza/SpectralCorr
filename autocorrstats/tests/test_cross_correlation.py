@@ -4,7 +4,7 @@ Tests for cross-correlation functions.
 
 import numpy as np
 import pytest
-from SpectralCorr import AR1_process, cross_correlation, maximum_cross_correlation
+from autocorrstats import AR1_process, cross_correlation, maximum_cross_correlation
 
 
 class TestCrossCorrelation:

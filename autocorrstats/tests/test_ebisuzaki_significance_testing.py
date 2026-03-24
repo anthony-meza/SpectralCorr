@@ -4,7 +4,7 @@ import numpy as np
 import xarray as xr
 import pytest
 
-from SpectralCorr.ebisuzaki_significance_testing import (
+from autocorrstats.ebisuzaki_significance_testing import (
     empirical_p_value,
 )
 

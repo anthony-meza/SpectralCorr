@@ -1,63 +1,32 @@
-# SpectralCorr
+# autocorrstats
 
 <img width="989" height="396" alt="output" src="https://github.com/user-attachments/assets/e27730ac-2e9d-4d30-b918-cc7c63e14d92" />
 
-Power-spectrum based correlation significance testing for autocorrelated time series. This Python package implements a non-parametric correlation test that utilizes randomly generated time series with the appropriate power spectra (Ebisuzaki, 1997). The Ebisuzaki correlation test can be applied here to test both lagged and non-lagged correlations. 
+`autocorrstats` helps you test relationships in autocorrelated time series without relying on methods that assume independent samples. It follows Ebisuzaki (1997) to generate ensembles of synthetic time series with power spectra similar to those of the original data, allowing you to estimate the significance of statistical quantities.
 
+The package currently supports significance testing for correlations and polynomial fits in time series that exhibit autocorrelation.
 
 ## Installation
 
-We recommend installing SpectralCorr in a virtual environment to avoid dependency conflicts:
+The simplest setup is the included Conda environment:
 
 ```bash
-# Create and activate a virtual environment
-$ python -m venv spectralcorr_env
-$ source spectralcorr_env/bin/activate  # On macOS/Linux
-$ spectralcorr_env\Scripts\activate     # On Windows
-
-# Install SpectralCorr
-$ pip install git+https://github.com/anthony-meza/SpectralCorr.git@main
+conda env create -f environment.yml
+conda activate autocorrstats
 ```
 
-Alternatively, you can install directly without a virtual environment (though this may cause dependency conflicts with other packages):
+This installs the package in editable mode together with the development and notebook dependencies used in the examples.
+
+If you only want to install the package itself:
 
 ```bash
-$ pip install git+https://github.com/anthony-meza/SpectralCorr.git@main
+pip install git+https://github.com/anthony-meza/SpectralCorr.git@main
 ```
-
-## Usage
-
-Here's a quick example to get you started:
-
-```python
-import numpy as np
-from SpectralCorr import AR1_process, cross_correlation, phase_scrambled_surrogates
-
-# Generate two AR(1) time series
-ts1 = AR1_process(rho=0.9, sigma=1.0, y0=0.0, N=500, seed=42)
-ts2 = AR1_process(rho=0.8, sigma=1.0, y0=0.0, N=500, seed=123)
-
-# Compute cross-correlation with Pearson method (no autocorrelation in timeseries)
-result_pearson = cross_correlation(ts1, ts2, maxlags=50, method='pearson')
-
-# Or use the Ebisuzaki method for robust significance testing for autocorrelated timeseries 
-result_ebisuzaki = cross_correlation(ts1, ts2, maxlags=50, method='ebisuzaki', n_surrogates=1000)
-
-# Results are returned as xarray Datasets
-print(result_ebisuzaki.cross_correlation)
-print(result_ebisuzaki.cross_correlation_pvalue)
-
-# The surrogate generator is also available directly
-surrogates = phase_scrambled_surrogates(ts1, n_surrogates=100)
-print(surrogates)
-```
-
-For an example notebook, see `notebook_examples/AR1_lagged_example.ipynb`.
 
 ## License
 
-`SpectralCorr` was created by Anthony Meza. It is licensed under the terms of the MIT license.
+`autocorrstats` was created by Anthony Meza and is released under the MIT License.
 
-## References 
+## Reference
 
-[Ebisuzaki, W. (1997). A method to estimate the statistical significance of a correlation when the data are serially correlated. Journal of Climate, 10(9), 2147–2153. https://doi.org/10.1175/1520-0442(1997)010&#60;2147:amtets&#62;2.0.co;2](https://doi.org/10.1175/1520-0442(1997)010%3C2147:AMTETS%3E2.0.CO;2)
+Ebisuzaki, W. (1997). A method to estimate the statistical significance of a correlation when the data are serially correlated. Journal of Climate, 10(9), 2147-2153. [https://doi.org/10.1175/1520-0442(1997)010%3C2147:AMTETS%3E2.0.CO;2](https://doi.org/10.1175/1520-0442(1997)010%3C2147:AMTETS%3E2.0.CO;2)

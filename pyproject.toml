@@ -1,13 +1,20 @@
-[tool.poetry]
-name = "SpectralCorr"
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autocorrstats"
 version = "0.1.0"
 description = "Phase randomization surrogates for cross-correlation significance testing in time series analysis"
-authors = ["Anthony Meza <ameza@mit.edu>"]
-maintainers = ["Anthony Meza <ameza@mit.edu>"]
-license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/anthony-meza/SpectralCorr"
-repository = "https://github.com/anthony-meza/SpectralCorr"
+license = {text = "MIT"}
+authors = [
+    {name = "Anthony Meza", email = "ameza@mit.edu"},
+]
+maintainers = [
+    {name = "Anthony Meza", email = "ameza@mit.edu"},
+]
+requires-python = ">=3.11"
 keywords = ["time-series", "correlation", "bootstrap", "statistics", "phase-randomization", "surrogates"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -21,29 +28,36 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: Scientific/Engineering :: Physics",
 ]
-packages = [{include = "SpectralCorr"}]
+dependencies = [
+    "numpy>=1.24.0,<2.1.0",
+    "scipy>=1.13.0",
+    "matplotlib>=3.6.0",
+    "pandas>=2.0.0,<2.3.0",
+    "xarray>=2023.1.0",
+    "tqdm>=4.65.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-numpy = ">=1.24.0,<2.1.0"
-scipy = ">=1.13.0"
-matplotlib = "^3.6.0"
-pandas = ">=2.0.0,<2.3.0"
-xarray = ">=2023.1.0"
-tqdm = "^4.65.0"
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-xdist>=3.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+    "ipython>=8.0.0",
+    "jupyter>=1.0.0",
+    "notebook>=6.4.0",
+]
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.0.0"
-pytest-cov = "^4.0.0"
-black = "^23.0.0"
-isort = "^5.12.0"
-flake8 = "^6.0.0"
-mypy = "^1.0.0"
-pre-commit = "^3.0.0"
+[project.urls]
+Homepage = "https://github.com/anthony-meza/SpectralCorr"
+Repository = "https://github.com/anthony-meza/SpectralCorr"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.setuptools.packages.find]
+include = ["autocorrstats*"]
 
 [tool.black]
 line-length = 88
@@ -55,8 +69,8 @@ profile = "black"
 line_length = 88
 
 [tool.pytest.ini_options]
-testpaths = ["SpectralCorr/tests"]
-addopts = "--cov=SpectralCorr --cov-report=term-missing --cov-report=html"
+testpaths = ["autocorrstats/tests"]
+addopts = "--cov=autocorrstats --cov-report=term-missing --cov-report=html"
 
 [tool.mypy]
 python_version = "3.11"
@@ -66,7 +80,7 @@ disallow_untyped_defs = true
 check_untyped_defs = true
 
 [tool.coverage.run]
-source = ["SpectralCorr"]
+source = ["autocorrstats"]
 
 [tool.coverage.report]
 exclude_lines = [

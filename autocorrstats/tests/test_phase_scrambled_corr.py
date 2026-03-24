@@ -2,8 +2,8 @@
 
 import numpy as np
 
-from SpectralCorr import AR1_process
-from SpectralCorr.ebisuzaki_surrogate_generation import phase_scrambled_surrogates
+from autocorrstats import AR1_process
+from autocorrstats.ebisuzaki_surrogate_generation import phase_scrambled_surrogates
 
 
 def test_phase_scrambled_surrogates_shape_and_dims():

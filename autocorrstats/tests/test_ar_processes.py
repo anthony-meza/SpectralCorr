@@ -4,7 +4,7 @@ Tests for AR process generation functions.
 
 import numpy as np
 import pytest
-from SpectralCorr.ar_processes import AR1_process
+from autocorrstats.ar_processes import AR1_process
 
 
 class TestAR1Process:

@@ -7,7 +7,7 @@ import matplotlib
 matplotlib.use('Agg')  # Non-interactive backend for testing
 import matplotlib.pyplot as plt
 import pandas as pd
-from SpectralCorr import (
+from autocorrstats import (
     AR1_process,
     cross_correlation,
     maximum_cross_correlation,
