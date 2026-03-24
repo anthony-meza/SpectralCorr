@@ -26,7 +26,7 @@ jobs:
         run: poetry install --no-interaction
 
       - name: Test with pytest
-        run: poetry run pytest SpectralCorr/tests/ --cov=SpectralCorr --cov-report=xml
+        run: poetry run pytest autocorrstats/tests/ --cov=autocorrstats --cov-report=xml
 
       - name: Use Codecov to track coverage
         uses: codecov/codecov-action@v5
