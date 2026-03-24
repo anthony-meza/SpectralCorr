@@ -1,4 +1,8 @@
-"""Phase scrambling utilities for generating surrogate time series."""
+"""Phase scrambling utilities for generating surrogate time series.
+
+In this package, surrogate time series are synthetic time series generated
+from the original data for significance testing.
+"""
 
 import numpy as np
 import xarray as xr
@@ -63,6 +67,9 @@ def phase_scrambled_surrogates(
     """
     Generate phase-scrambled surrogates of an xarray DataArray.
 
+    Here, "surrogates" means synthetic time series derived from the original
+    series. They preserve the original power spectrum while randomizing phase.
+
     Phase scrambling is applied independently along `time_dim` for every slice
     of the remaining dimensions using NumPy FFTs.
 
@@ -73,15 +80,15 @@ def phase_scrambled_surrogates(
     detrend : {"constant", "linear", None}, default "constant"
         Detrending option applied before the FFT.
     n_surrogates : int, default 1
-        Number of surrogate series to generate.
+        Number of synthetic time series to generate.
     time_dim : str, default "time"
         Name of the dimension along which to phase scramble.
 
     Returns
     -------
     xarray.DataArray
-        Phase-scrambled surrogate(s). A new dimension `"surrogate"` is added
-        when `n_surrogates > 1`.
+        Phase-scrambled synthetic time series. A new dimension `"surrogate"`
+        is added when `n_surrogates > 1`.
     """
     validate_time_series(ts, time_dim=time_dim, function_name="phase_scrambled_surrogates")
     if detrend not in {"constant", "linear", None}:

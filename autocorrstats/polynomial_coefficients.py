@@ -1,4 +1,8 @@
-"""Polynomial coefficient estimation and surrogate significance testing."""
+"""Polynomial coefficient estimation and surrogate significance testing.
+
+In this package, surrogate coefficients are coefficients computed from
+synthetic time series generated from the original data.
+"""
 
 import xarray as xr
 
@@ -31,7 +35,11 @@ def polynomial_coefficient_significance(
     return_distributions: bool = False,
     time_dim: str = "time",
 ) -> xr.Dataset:
-    """Test polynomial coefficients against phase-scrambled surrogate coefficients."""
+    """Test polynomial coefficients against phase-scrambled surrogate coefficients.
+
+    Here, the surrogate coefficients come from synthetic time series produced
+    by phase scrambling the original series.
+    """
     validate_time_series(
         ts,
         time_dim=time_dim,

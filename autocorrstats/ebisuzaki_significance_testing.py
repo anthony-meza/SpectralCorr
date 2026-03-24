@@ -1,4 +1,8 @@
-"""Utilities for testing observed parameters against surrogate distributions."""
+"""Utilities for testing observed parameters against surrogate distributions.
+
+In this package, surrogate distributions are distributions computed from
+synthetic time series generated from the original data.
+"""
 
 import numpy as np
 import xarray as xr
@@ -11,7 +15,11 @@ def empirical_p_value(
     surrogate_dim: str = "surrogate",
     alternative: str = "two-sided",
 ) -> xr.DataArray:
-    """Compute an empirical p-value from a surrogate distribution."""
+    """Compute an empirical p-value from a surrogate distribution.
+
+    The surrogate distribution is built from synthetic time series generated
+    from the observed data.
+    """
     if alternative == "two-sided":
         comparison = np.abs(empirical_distribution) >= np.abs(test_parameter)
     elif alternative == "greater":

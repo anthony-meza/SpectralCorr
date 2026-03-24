@@ -4,6 +4,8 @@
 
 `autocorrstats` helps you test relationships in autocorrelated time series without relying on methods that assume independent samples. It follows Ebisuzaki (1997) to generate ensembles of synthetic time series with power spectra similar to those of the original data, allowing you to estimate the significance of statistical quantities.
 
+In this repository, the word `surrogates` refers to those synthetic time series. They are not new observations; they are randomized series generated from the original data so that key properties such as the power spectrum are preserved while the timing information is scrambled.
+
 The package currently supports significance testing for correlations and polynomial fits in time series that exhibit autocorrelation.
 
 ## Installation
